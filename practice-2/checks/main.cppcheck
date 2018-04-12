@@ -1,0 +1,4 @@
+[main.cpp:147]: (style) The scope of the variable 'price' can be reduced.
+[main.cpp:147]: (style) The scope of the variable 'count' can be reduced.
+(information) Cppcheck cannot find all the include files (use --check-config for details)
+

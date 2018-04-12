@@ -1,0 +1,21 @@
+==5186== 
+==5186== HEAP SUMMARY:
+==5186==     in use at exit: 72,776 bytes in 2 blocks
+==5186==   total heap usage: 9 allocs, 7 frees, 75,024 bytes allocated
+==5186== 
+==5186== 72 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==5186==    at 0x4C2E0EF: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5186==    by 0x401BCD: main (in /home/sergey/Рабочий стол/practice-2/pr2)
+==5186== 
+==5186== LEAK SUMMARY:
+==5186==    definitely lost: 72 bytes in 1 blocks
+==5186==    indirectly lost: 0 bytes in 0 blocks
+==5186==      possibly lost: 0 bytes in 0 blocks
+==5186==    still reachable: 72,704 bytes in 1 blocks
+==5186==         suppressed: 0 bytes in 0 blocks
+==5186== Reachable blocks (those to which a pointer was found) are not shown.
+==5186== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==5186== 
+==5186== For counts of detected and suppressed errors, rerun with: -v
+==5186== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+
