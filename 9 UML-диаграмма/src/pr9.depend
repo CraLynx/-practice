@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1523301673 source:d:\storage\yandexdisk\public\Ðîìàõà\ÏÐ9\src\music.cpp
+	"Music.h"
+
+1523301684 d:\storage\yandexdisk\public\Ðîìàõà\ÏÐ9\src\music.h
+	<iostream>
+	<string>
+
+1523301746 source:d:\storage\yandexdisk\public\Ðîìàõà\ÏÐ9\src\song.cpp
+	"Song.h"
+
+1523301698 d:\storage\yandexdisk\public\Ðîìàõà\ÏÐ9\src\song.h
+	"Music.h"
+

@@ -1,0 +1,185 @@
+        -:    0:Source:main.cpp
+        -:    0:Graph:main.gcno
+        -:    0:Data:main.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <iostream>
+        -:    2:#include <stdexcept>
+        -:    3:#include <stdlib.h>
+        -:    4:#include <time.h>
+        -:    5:#include <iomanip>
+        -:    6:using namespace std;
+        -:    7:
+        -:    8:#define RAND_MAX 10
+        -:    9:
+        -:   10:struct Data
+        -:   11:{
+        -:   12:    int __number;
+        -:   13:    Data *__next;
+        -:   14:
+       25:   15:    Data(int number = 2) : __number(number), __next(nullptr)
+       25:   15-block  0
+        -:   16:    {
+        -:   17:
+       25:   18:    }
+        -:   19:};
+        -:   20:
+        -:   21:class List
+        -:   22:{
+        -:   23:    Data *__data;
+        -:   24:    Data *sinker, *prev;
+        -:   25:
+        -:   26:    unsigned int __count;
+        -:   27:
+        -:   28:public:
+        2:   29:    List(unsigned int __count = 0, bool random = false) : __data(new Data()),  __count(__count-1)
+        1:   29-block  0
+        1:   29-block  1
+        -:   30:    {
+        1:   31:        if (__count > 1) {
+        1:   32:            sinker = nullptr;
+        1:   33:            sinker = __data;
+        -:   34:
+        1:   35:            srand(time(0));
+        1:   35-block  0
+       15:   36:            for (unsigned int i = 0; i < this->__count; i++) {
+       15:   36-block  0
+       14:   36-block  1
+        1:   36-block  2
+       14:   37:                sinker->__next = (random) ? new Data(rand() % RAND_MAX) : new Data();
+       14:   37-block  0
+       14:   37-block  1
+    $$$$$:   37-block  2
+       14:   38:                sinker = sinker->__next;
+        -:   39:            }
+        -:   40:        }
+        1:   41:    }
+        -:   42:
+        1:   43:    ~List()
+        1:   43-block  0
+        1:   44:    {
+        1:   45:        sinker = __data, prev = nullptr;
+        1:   45-block  0
+        -:   46:
+       24:   47:        while (sinker->__next) {
+       24:   47-block  0
+       23:   48:            sinker = sinker->__next;
+       23:   49:            delete __data;
+       23:   49-block  0
+       23:   50:            __data = sinker;
+        -:   51:        }
+        -:   52:
+        1:   53:    }
+        -:   54:
+        -:   55:    unsigned int count()
+        -:   56:    {
+        -:   57:        return this->__count;
+        -:   58:    }
+        -:   59:
+        2:   60:    void show()
+        2:   60-block  0
+        -:   61:    {
+        2:   62:        sinker = nullptr;
+        2:   63:        sinker = this->__data;
+        -:   64:
+        2:   65:        cout << "Size: " << __count << '\n';
+        2:   65-block  0
+       41:   66:        for (unsigned int i = 0; sinker; i++, sinker = sinker->__next) {
+       41:   66-block  0
+       39:   67:            cout << "[Index: " << i << "] => " << sinker->__number << " | Address: " << sinker << '\n';
+       39:   67-block  0
+        -:   68:        }
+        2:   69:    }
+        -:   70:
+        1:   71:    void evaluate()
+        1:   71-block  0
+        -:   72:    {
+        1:   73:        int multi_result = 1;
+        1:   74:        sinker = nullptr, prev = nullptr;
+        1:   75:        sinker = __data, prev = __data;
+        1:   75-block  0
+        -:   76:
+       16:   77:        while (sinker != nullptr) {
+       16:   77-block  0
+       15:   77-block  1
+       15:   78:            multi_result *= (sinker->__number > 0) ? sinker->__number : 1;
+        -:   79:
+       15:   80:            if (sinker) {
+       15:   80-block  0
+       15:   81:                if (sinker->__number > 0) {
+       15:   81-block  0
+       14:   82:                    if ((sinker->__number % 2) == 0)  {
+       14:   82-block  0
+        -:   83:
+       10:   84:                        Data *newItem = new Data(1);
+       10:   84-block  0
+       10:   85:                        newItem->__next = sinker->__next;
+       10:   86:                        sinker->__next = newItem;
+       10:   87:                        sinker = newItem;
+        -:   88:
+       15:   89:                        __count++;
+       14:   89-block  0
+       15:   89-block  1
+        -:   90:                    }
+        -:   91:                }
+        -:   92:            }
+        -:   93:
+       15:   94:            if (__data->__number == 0) {
+       15:   94-block  0
+    #####:   95:                __data = __data->__next;
+    #####:   96:                sinker = __data;
+    #####:   97:                delete prev;
+    $$$$$:   97-block  0
+        -:   98:
+    #####:   99:                __count--;
+       15:  100:            } else if (sinker->__number == 0) {
+       15:  100-block  0
+        1:  101:                prev->__next = sinker->__next;
+        1:  102:                delete sinker;
+        1:  102-block  0
+        1:  103:                sinker = prev->__next;
+        -:  104:
+        1:  105:                __count--;
+        -:  106:            } else {
+       14:  107:                prev = sinker;
+       14:  108:                sinker = sinker->__next;
+       14:  108-block  0
+        -:  109:            }
+        -:  110:        }
+        -:  111:
+        1:  112:    }
+        -:  113:
+        -:  114:};
+        -:  115:
+        -:  116:
+        1:  117:int main(int argc, char* argv[])
+        1:  117-block  0
+        -:  118:{
+        2:  119:    List lst(15, true);
+        1:  119-block  0
+        1:  119-block  1
+    %%%%%:  119-block  2
+        -:  120:
+        1:  121:    lst.show();
+        1:  121-block  0
+        1:  122:    cout << '\n' << setfill('-') << setw(50) << '\n';
+        1:  122-block  0
+        1:  122-block  1
+        1:  122-block  2
+        1:  122-block  3
+        1:  123:    lst.evaluate();
+        1:  123-block  0
+        1:  124:    cout << '\n' << setfill('-') << setw(50) << '\n';
+        1:  124-block  0
+        1:  124-block  1
+        1:  124-block  2
+        1:  124-block  3
+        1:  125:    lst.show();
+        1:  125-block  0
+        5:  126:}
+        1:  126-block  0
+        1:  126-block  1
+        1:  126-block  2
+        1:  126-block  3
+        1:  126-block  4
+        1:  126-block  5

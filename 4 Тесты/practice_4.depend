@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1518806831 source:e:\storage\ycloud\yandexdisk\Учёба\Предметы\Инструментальные средства разработки\Практическая работа №4\main.cpp
+	<iostream>
+	<stdexcept>
+	<stdlib.h>
+	<time.h>
+	<iomanip>
+
+1519723025 source:d:\storage\yandexdisk\Учёба\Предметы\Инструментальные средства разработки\Практическая работа №4\main.cpp
+	<iostream>
+	<stdexcept>
+	<stdlib.h>
+	<time.h>
+	<iomanip>
+	<windows.h>
+
+1519914146 source:c:\users\walkuser\yandexdisk\Учёба\Предметы\Инструментальные средства разработки\Практическая работа №4\main.cpp
+	<iostream>
+	<stdexcept>
+	<stdlib.h>
+	<time.h>
+	<iomanip>
+	<windows.h>
+
+1523306668 source:d:\storage\yandexdisk\public\Ромаха\ПР4\main.cpp
+	<iostream>
+	<stdexcept>
+	<stdlib.h>
+	<time.h>
+	<iomanip>
+	<windows.h>
+
